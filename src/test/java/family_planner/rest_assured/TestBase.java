@@ -13,6 +13,6 @@ public class TestBase {
     public void init() {
         RestAssured.baseURI = "https://clanhub-sd6ys.ondigitalocean.app/";
         RestAssured.basePath = "api";
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+        //RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }
 }

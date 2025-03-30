@@ -46,6 +46,7 @@ public class LoginTest extends TestBase {
                 .post(loginDto)
                 .then()
                 .assertThat()
+                .log().ifValidationFails()  // Лог тільки при фейлі
                 .statusCode(200)
                 .body(containsString("token"))
                 .extract().path("token");
@@ -59,6 +60,7 @@ public class LoginTest extends TestBase {
                 .when()
                 .post(loginDto)
                 .then()
+                .log().ifValidationFails()  // Лог тільки при фейлі
                 .assertThat()
                 .statusCode(401)
                 .body(containsString("Bad credentials"));
@@ -71,6 +73,7 @@ public class LoginTest extends TestBase {
                 .when()
                 .post(loginDto)
                 .then()
+                .log().ifValidationFails()  // Лог тільки при фейлі
                 .assertThat()
                 .statusCode(401)
                 .body(containsString("Bad credentials"));
@@ -83,6 +86,7 @@ public class LoginTest extends TestBase {
                 .when()
                 .post(loginDto)
                 .then()
+                .log().ifValidationFails()  // Лог тільки при фейлі
                 .assertThat()
                 .statusCode(400)
                 .body(containsString("Invalid email format"));
@@ -95,6 +99,7 @@ public class LoginTest extends TestBase {
                 .when()
                 .post(loginDto)
                 .then()
+                .log().ifValidationFails()  // Лог тільки при фейлі
                 .assertThat()
                 .statusCode(400)
                 .body(containsString("Email cannot be empty"));
@@ -107,6 +112,7 @@ public class LoginTest extends TestBase {
                 .when()
                 .post(loginDto)
                 .then()
+                .log().ifValidationFails()  // Лог тільки при фейлі
                 .assertThat()
                 .statusCode(400)
                 .body(containsString("Password cannot be empty"));
