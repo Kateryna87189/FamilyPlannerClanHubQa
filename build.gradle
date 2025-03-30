@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+    //implementation 'ch.qos.logback:logback-classic:1.5.16' // зависимость от Logback для логирования
+
+// Фреймворк
+    implementation 'org.testng:testng:7.11.0'
+
+// Для работы с REST API
+    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+    implementation group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.14'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+// Парсит JSON в Java объекты и обратно
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.12.1'
+
+// Подключение к базам данных
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
+    implementation 'org.slf4j:slf4j-nop:2.0.7'
+}
+
+test {
+    useTestNG()
+}
