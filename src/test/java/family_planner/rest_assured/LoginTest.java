@@ -2,119 +2,38 @@ package family_planner.rest_assured;
 
 import family_planner.dto.AuthRequestDto;
 import io.restassured.http.ContentType;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 
 public class LoginTest extends TestBase {
-    AuthRequestDto body = AuthRequestDto.builder()
-            .email("katranchik21@gmail.com")
-            .password("Password@1")
-            .build();
-    AuthRequestDto invalidPasswordBody = AuthRequestDto.builder()
-            .email("katranchik21@gmail.com")
-            .password("Password1")  // неправильний пароль
-            .build();
 
-    AuthRequestDto unregisteredEmailBody = AuthRequestDto.builder()
-            .email("Kateryna2401@outlook.com")  // незареєстрований email
-            .password("Password@1")
-            .build();
-
-    AuthRequestDto invalidEmailFormatBody = AuthRequestDto.builder()
-            .email("katranchik21@.com")  // некоректний формат email
-            .password("Password@1")
-            .build();
-
-    AuthRequestDto emptyEmailBody = AuthRequestDto.builder()
-            .email("")  // порожній email
-            .password("Password@1")
-            .build();
-
-    AuthRequestDto emptyPasswordBody = AuthRequestDto.builder()
-            .email("katranchik21@gmail.com")
-            .password("")  // порожній пароль
-            .build();
-
-
-    @Test
-    public void loginPositiveTest() {
-        String responseToken = given()
-                .contentType(ContentType.JSON)
-                .body(body).when()
-                .post(loginDto)
-                .then()
-                .assertThat()
-                .log().ifValidationFails()  // Лог тільки при фейлі
-                .statusCode(200)
-                .body(containsString("token"))
-                .extract().path("token");
-        System.out.println("Response token: " + responseToken);
+    @DataProvider(name = "loginTestData")
+    public Object[][] loginTestData() {
+        return new Object[][]{
+                {AuthRequestDto.builder().email("katranchik21@gmail.com").password("Password@1").build(), 200, "token"},
+                {AuthRequestDto.builder().email("katranchik21@gmail.com").password("Password1").build(), 401, "Bad credentials"},
+                {AuthRequestDto.builder().email("Kateryna2401@outlook.com").password("Password@1").build(), 401, "Bad credentials"},
+                {AuthRequestDto.builder().email("katranchik21@.com").password("Password@1").build(), 400, "Invalid email format"},
+                {AuthRequestDto.builder().email("").password("Password@1").build(), 400, "Email cannot be empty"},
+                {AuthRequestDto.builder().email("katranchik21@gmail.com").password("").build(), 400, "Password cannot be empty"}
+        };
     }
-    @Test
-    public void loginWithIncorrectPasswordTest() {
+
+    @Test(dataProvider = "loginTestData")
+    public void loginTest(AuthRequestDto body, int expectedStatusCode, String expectedMessage) {
         given()
                 .contentType(ContentType.JSON)
-                .body(invalidPasswordBody)
+                .body(body)
                 .when()
                 .post(loginDto)
                 .then()
-                .log().ifValidationFails()  // Лог тільки при фейлі
+                .log().ifValidationFails()
                 .assertThat()
-                .statusCode(401)
-                .body(containsString("Bad credentials"));
-    }
-    @Test
-    public void loginWithUnregisteredEmailTest() {
-        given()
-                .contentType(ContentType.JSON)
-                .body(unregisteredEmailBody)
-                .when()
-                .post(loginDto)
-                .then()
                 .log().ifValidationFails()  // Лог тільки при фейлі
-                .assertThat()
-                .statusCode(401)
-                .body(containsString("Bad credentials"));
-    }
-    @Test
-    public void loginWithInvalidEmailFormatTest() {
-        given()
-                .contentType(ContentType.JSON)
-                .body(invalidEmailFormatBody)
-                .when()
-                .post(loginDto)
-                .then()
-                .log().ifValidationFails()  // Лог тільки при фейлі
-                .assertThat()
-                .statusCode(400)
-                .body(containsString("Invalid email format"));
-    }
-    @Test
-    public void loginWithEmptyEmailTest() {
-        given()
-                .contentType(ContentType.JSON)
-                .body(emptyEmailBody)
-                .when()
-                .post(loginDto)
-                .then()
-                .log().ifValidationFails()  // Лог тільки при фейлі
-                .assertThat()
-                .statusCode(400)
-                .body(containsString("Email cannot be empty"));
-    }
-    @Test
-    public void loginWithEmptyPasswordTest() {
-        given()
-                .contentType(ContentType.JSON)
-                .body(emptyPasswordBody)
-                .when()
-                .post(loginDto)
-                .then()
-                .log().ifValidationFails()  // Лог тільки при фейлі
-                .assertThat()
-                .statusCode(400)
-                .body(containsString("Password cannot be empty"));
+                .statusCode(expectedStatusCode)
+                .body(containsString(expectedMessage));
     }
 }
