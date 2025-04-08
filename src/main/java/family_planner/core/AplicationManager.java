@@ -15,14 +15,19 @@ public class AplicationManager {
     public WebDriverWait wait;
     public BasePage basePage;
 
-//    public BasePage getBasePage() {
+    public BasePage getBasePage() {
+        return basePage;
+    }
+
+
+    //    public BasePage getBasePage() {
 //        return basePage;
 //    }
     public void init () {
         System.err.close();
         //driver = new ChromeDriver();
 
-        String browser = System.getProperty("browser", "edge");
+        String browser = System.getProperty("browser", "chrome");
         // Проверяет значение переменной browser и в зависимости от результата инициализирует нужный драйвер
         switch (browser.toLowerCase()) {
             case "firefox":
@@ -44,7 +49,7 @@ public class AplicationManager {
 //        pause (50);
 //        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10)); //ojudanie zagryzki stranicu
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(900));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         basePage = new BasePage(driver, wait);
     }
     public void stop () {

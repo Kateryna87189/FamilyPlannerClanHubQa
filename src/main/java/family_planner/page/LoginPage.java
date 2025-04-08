@@ -53,7 +53,7 @@ public class LoginPage extends BasePage {
         return invalidEmailErrorMessage.getText();
     }
 
-    @FindBy(xpath = " //div[contains(text(),'Incorrect password. Please try again.')]")
+    @FindBy(xpath = " //div[contains(text(),'Incorrect email or password. Please try again.')]")
     private WebElement invalidPasswordErrorMessage;
 
     public String getIncorrectPasswordTest() {
@@ -77,7 +77,7 @@ public class LoginPage extends BasePage {
         return emptyEmailFieldErrorMessage.getText();
     }
 
-    @FindBy(xpath = "//div[contains(text(),'Incorrect password. Please try again.')]")
+    @FindBy(xpath = "//div[contains(text(),'Incorrect email or password. Please try again.')]")
     private WebElement invalidUserErrorMessage;
 
     public String getInvalidUserErrorMessage() {

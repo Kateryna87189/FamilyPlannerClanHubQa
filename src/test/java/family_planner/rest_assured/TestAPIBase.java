@@ -9,7 +9,7 @@ public class TestAPIBase {
 
     @BeforeMethod
     public void init() {
-        RestAssured.baseURI = "https://clanhub-sd6ys.ondigitalocean.app/";
+        RestAssured.baseURI = "https://clanhub-sd6ys.ondigitalocean.app";
         RestAssured.basePath = "api";
         //RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }

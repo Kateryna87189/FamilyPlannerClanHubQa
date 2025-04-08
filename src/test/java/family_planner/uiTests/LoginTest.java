@@ -41,7 +41,7 @@ public class LoginTest extends TestUIBase {
     @Test
     public void incorrectPasswordTest() {
         String email = "katranchik21@gmail.com";
-        String password = "Password1@23"; //
+        String password = "Password1@23";
 
         HomePage homePage = new HomePage(app.driver, app.wait);
         LoginPage loginPage = homePage.clickLoginButton();
@@ -50,7 +50,7 @@ public class LoginTest extends TestUIBase {
                 .clickLoginButton();
 
         String errorMessage = loginPage.getIncorrectPasswordTest();
-        Assert.assertTrue(errorMessage.contains("Incorrect password. Please try again."),
+        Assert.assertTrue(errorMessage.contains("Incorrect email or password. Please try again."),
                 errorMessage);
     }
 
@@ -84,8 +84,8 @@ public class LoginTest extends TestUIBase {
 
     @Test
     public void unregisteredUserTest() {
-        String email = "usw999+2j804gyg7o78k@spam4.me"; // Незареєстрований користувач
-        String password = "SomePassword123@";
+        String email = "utlmt4+ck1fg04xdit5k@sharklasers.com"; // Незареєстрований користувач
+        String password = "Password@1";
 
         HomePage homePage = new HomePage(app.driver, app.wait);
         LoginPage loginPage = homePage.clickLoginButton();
@@ -93,8 +93,8 @@ public class LoginTest extends TestUIBase {
                 .enterPassword(password)
                 .clickLoginButton();
 
-        String errorMessage = loginPage.getInvalidUserErrorMessage();
-        Assert.assertTrue(errorMessage.contains("Incorrect password. Please try again."),
+         String errorMessage = loginPage.getInvalidUserErrorMessage();
+        Assert.assertTrue(errorMessage.contains("Incorrect email or password. Please try again."),
                 errorMessage);
     }
 

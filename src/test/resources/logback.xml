@@ -1,0 +1,47 @@
+<configuration>
+    <!--  Главный блок настроек Logback  -->
+    <timestamp key="bySecond" datePattern="dd'T'HHmmss"/>
+    <!--  Формат даты и времени для имени файла логов  -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--     ! паттерн вывода логов -->
+        <!-- %d{HH:mm:ss.SSS} - Временная метка в часах, минутах, секундах и миллисекундах. -->
+        <!-- [%thread] - Имя потока, который записал сообщение. -->
+        <!-- %-5level - Уровень логирования (например, DEBUG, INFO, WARN, ERROR), дополненный до 5 символов. -->
+        <!-- %logger{36} - Имя логгера, обрезанное до 36 символов, если оно длиннее. -->
+        <!--  -%kvp- - Пары ключ-значение, если есть. -->
+        <!-- %msg - Само сообщение лога. -->
+        <!-- %n - Символ новой строки, зависящий от платформы. -->
+        <encoder>
+            <!--  Определяем формат одной строки лога  -->
+            <!--  %d - время, %thread - поток, %-5level - уровень логирования, %logger - имя логгера, %msg - сообщение, %n - перенос строки  -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %class.%method - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--  Настройка вывода в файл  -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--  Путь к файлу лога; ${bySecond} - подстановка даты и времени  -->
+        <file>src/test_logs/log-${bySecond}.log</file>
+        <!--  Продолжать записывать в тот же файл, не перезаписывать  -->
+        <append>true</append>
+        <!--  Немедленная запись в файл без буферизации  -->
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <!--  Определяем формат одной строки лога  -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--  Локальное повышение уровня логов для класса org.testng.internal.Utils, чтобы не выводить INFO  -->
+    <logger name="org.testng.internal.Utils" level="WARN"/>
+    <logger name="io.github.bonigarcia.wdm.WebDriverManager" level="OFF"/>
+    <!--  ! <root level="debug">&ndash;&gt; Меняем уровень логирования на INFO -->
+    <root level="info">
+        <!--         DEBUG - Отладочные сообщения, используемые для диагностики. -->
+        <!--         INFO - Информационные сообщения, описывающие нормальную работу. -->
+        <!--         WARN - Предупреждения о потенциальных проблемах. -->
+        <!--         ERROR - Ошибки, которые требуют немедленного внимания.         -->
+        <!--  Подключаем вывод в консоль  -->
+        <appender-ref ref="STDOUT"/>
+        <!--  Подключаем вывод в файл  -->
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

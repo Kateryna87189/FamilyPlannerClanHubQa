@@ -28,6 +28,7 @@ public class BasePage {
         element.click();
     }
     private void scrollToElement(WebElement element) {
+
         wait.until(ExpectedConditions.visibilityOf(element));
         js.executeScript("arguments[0].scrollIntoView(true);", element);
         waitForPageScrollToFinish();
@@ -73,6 +74,7 @@ public class BasePage {
         System.out.println("Screenshot saved to: [" + screenshot.getAbsolutePath() + "]");
         return screenshot.getAbsolutePath();
     }
+
     protected void shouldHaveText(WebElement element, String text, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
         try {

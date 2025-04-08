@@ -18,4 +18,6 @@ public class HomePage extends BasePage {
         click(loginButton);
         return new LoginPage(driver, wait);
     }
+
+
 }
