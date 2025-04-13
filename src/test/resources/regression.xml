@@ -5,9 +5,6 @@
         <classes>
             <class name="family_planner.uiTests.LoginTest"/>
             <class name="family_planner.uiTests.TaskTests">
-                <methods>
-                    <exclude name=".*Negative.*"/>
-                </methods>
             </class>
         </classes>
     </test>

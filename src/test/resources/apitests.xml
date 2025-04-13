@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="APITest" verbose="1">
+    <test name="PositiveTests">
+        <classes>
+            <class name="family_planner.rest_assured.LoginAPITest"/>
+        </classes>
+    </test>
+</suite>
