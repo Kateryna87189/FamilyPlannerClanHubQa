@@ -1,32 +1,18 @@
-# Gradle
-.gradle/
+.gradle
 build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# allow screenshots in target
-!target/test_screenshots/
-!target/test_screenshots/*.png
-
-# IntelliJ IDEA
+### IntelliJ IDEA ###
 .idea/
 *.iws
 *.iml
-*.ipr
 *.log
-
-# Ignore other output folders
+*.ipr
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-
-# PNG (ignore all except screenshots)
-*.png
-!target/test_screenshots/
-!target/test_screenshots/*.png
-
-
-
-
-
 
 
 
