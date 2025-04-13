@@ -1,4 +1,4 @@
-name: 🐞 Java CI with Gradle [UBUNTU] Selenide Tests
+name: 🦊 Java CI with Gradle [UBUNTU] Selenide Tests
 
 on:
   push:
@@ -17,11 +17,9 @@ on:
           - 'smoke'
           - 'regression'
           - 'apitests'
-          - 'login'
-          - 'LoginWitString'
-          - 'LoginWitTable'
-          - 'InvalidPassword'
-          - 'task'  
+          - 'LoginAPITest'
+          - 'LoginTest'
+          - 'TaskTests'
 
 jobs:
   test:
@@ -33,7 +31,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'  # використовуємо Java 17, як ти зазначила
+          java-version: '17'  
 
       - name: ❎ ⌛️ Check Java version
         run: java -version
@@ -70,8 +68,8 @@ jobs:
           if [ "${{ github.event.inputs.deployment_target }}" = "all_tests" ]; then
             TAG=""
           elif [ "${{ github.event.inputs.deployment_target }}" = "login" ]; then
-            TAG='-Dcucumber.filter.tags=(@Login or @LoginWitString or @LoginWitTable or @InvalidPassword)'
-          elif [ "${{ github.event.inputs.deployment_target }}" = "login_and_tasks" ]; then
+            TAG='-Dcucumber.filter.tags=(@LoginTest or @LoginAPITest or @TaskTests)'
+          elif [ "${{ github.event.inputs.deployment_target }}" = "apitests" ]; then
             TAG='-Dcucumber.filter.tags=(@Login or @LoginWitString or @LoginWitTable or @InvalidPassword or @Task or @TaskValidation or @TaskDescriptionValidation or @TaskDeadlineValidation or @TaskDateValidation or @TaskNameValidation)'
           else
             TAG="-Dcucumber.filter.tags=@${{ github.event.inputs.deployment_target }}"
