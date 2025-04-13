@@ -21,7 +21,7 @@ on:
           - 'LoginWitString'
           - 'LoginWitTable'
           - 'InvalidPassword'
-          - 'login_and_tasks'  # для запуску тестів логіну та тасок
+          - 'task'  
 
 jobs:
   test:
