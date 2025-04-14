@@ -65,7 +65,16 @@ jobs:
         run: ls -R
 
       - name: ▶️ 🐞 Run tests
-        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./gradlew clean smoky build > build.log 2>&1 || true
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
+            ./gradlew clean ${{ github.event.inputs.deployment_target }} build > build.log 2>&1 || true
+        if: github.event_name == 'workflow_dispatch'
+#        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./gradlew clean smoky build > build.log 2>&1 || true
+      - name: ▶️ 🐞 Run default tests on push/PR
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
+            ./gradlew clean all_tests build > build.log 2>&1 || true
+        if: github.event_name != 'workflow_dispatch'
 
       - name: ✅ 📂 List Directories after tests
         if: always()
