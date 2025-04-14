@@ -4,9 +4,12 @@ import family_planner.core.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.swing.*;
 
 public class TaskPage extends BasePage {
 
@@ -49,7 +52,12 @@ public class TaskPage extends BasePage {
 
     public TaskPage createTask(String name, String deadline, String description) {
         type(taskName, name);
-        type(taskDeadline, deadline);
+        // type(taskDeadline, deadline);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(taskDeadline);
+        actions.click();
+        actions.sendKeys(deadline).build().perform();
+
         type(taskDescription, description);
         click(submitButton);
        // click(popUpButton);

@@ -2,6 +2,7 @@ package family_planner.core;
 
 import family_planner.page.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,11 +14,8 @@ import java.time.Duration;
 public class AplicationManager {
     public WebDriver driver;
     public WebDriverWait wait;
+    @Getter
     public BasePage basePage;
-
-    public BasePage getBasePage() {
-        return basePage;
-    }
 
 
     //    public BasePage getBasePage() {
