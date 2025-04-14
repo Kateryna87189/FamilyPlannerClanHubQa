@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="RegressionTest" verbose="1">
+    <test name="PositiveTests">
+        <classes>
+            <class name="family_planner.uiTests.LoginTest"/>
+            <class name="family_planner.uiTests.TaskTests">
+            </class>
+        </classes>
+    </test>
+</suite>

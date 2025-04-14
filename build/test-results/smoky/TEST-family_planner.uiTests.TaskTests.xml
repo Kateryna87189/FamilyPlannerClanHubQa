@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="family_planner.uiTests.TaskTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-04-14T17:51:58" hostname="WINDOWS-7NC6KD9" time="68.073">
+  <properties/>
+  <testcase name="testCreateTaskWithoutName" classname="family_planner.uiTests.TaskTests" time="6.25"/>
+  <testcase name="testCreateValidTask" classname="family_planner.uiTests.TaskTests" time="6.024"/>
+  <testcase name="testPastDeadline" classname="family_planner.uiTests.TaskTests" time="5.502"/>
+  <testcase name="testTooLongDescription" classname="family_planner.uiTests.TaskTests" time="7.999"/>
+  <testcase name="testTooLongTaskName" classname="family_planner.uiTests.TaskTests" time="6.075"/>
+  <testcase name="testUnavailableDate" classname="family_planner.uiTests.TaskTests" time="5.896"/>
+  <system-out><![CDATA[19:51:50.063 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.setUp - Test is started: [testCreateTaskWithoutName]
+19:52:04.258 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.tearDown - Test is PASSED: [testCreateTaskWithoutName]
+19:52:05.712 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.setUp - Test is started: [testCreateValidTask]
+19:52:16.514 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.tearDown - Test is PASSED: [testCreateValidTask]
+19:52:18.051 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.setUp - Test is started: [testPastDeadline]
+19:52:27.925 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.tearDown - Test is PASSED: [testPastDeadline]
+19:52:29.321 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.setUp - Test is started: [testTooLongDescription]
+19:52:41.998 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.tearDown - Test is PASSED: [testTooLongDescription]
+19:52:43.342 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.setUp - Test is started: [testTooLongTaskName]
+19:52:54.144 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.tearDown - Test is PASSED: [testTooLongTaskName]
+19:52:55.532 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.setUp - Test is started: [testUnavailableDate]
+19:53:06.080 [Test worker] INFO  family_planner.coreUiTests.TestUIBase.tearDown - Test is PASSED: [testUnavailableDate]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
