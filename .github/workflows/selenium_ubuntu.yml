@@ -65,18 +65,7 @@ jobs:
         run: ls -R
 
       - name: ▶️ 🐞 Run tests
-        run: |
-          if [ "${{ github.event.inputs.deployment_target }}" = "all_tests" ]; then
-            TAG=""
-          elif [ "${{ github.event.inputs.deployment_target }}" = "login" ]; then
-            TAG='-Dcucumber.filter.tags=(@LoginTest or @LoginAPITest or @TaskTests)'
-          elif [ "${{ github.event.inputs.deployment_target }}" = "login" ]; then
-            TAG='-Dcucumber.filter.tags=(@Login or @LoginWitString or @LoginWitTable or @InvalidPassword or @Task or @TaskValidation or @TaskDescriptionValidation or @TaskDeadlineValidation or @TaskDateValidation or @TaskNameValidation)'
-          else
-            TAG="-Dcucumber.filter.tags=@${{ github.event.inputs.deployment_target }}"
-          fi
-          echo "Running tests with tag filter: $TAG"
-          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" gradle clean test "$TAG" > build.log 2>&1 || true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./gradlew clean smoky build > build.log 2>&1 || true
 
       - name: ✅ 📂 List Directories after tests
         if: always()

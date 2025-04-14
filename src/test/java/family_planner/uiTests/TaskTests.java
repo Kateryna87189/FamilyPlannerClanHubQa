@@ -55,7 +55,7 @@ public class TaskTests extends TestUIBase {
         DashboardPage dashboardPage = new DashboardPage(app.driver, app.wait);
         TaskPage taskPage = dashboardPage.clickAddNewTaskButton();
 
-        taskPage.createTask("test task!", "10-11-2023", "Description");
+        taskPage.createTask("test task!", "24-10-2024", "Description");
         assertTrue(taskPage.isPastDateErrorDisplayed(), "Deadline cannot be in the past");
     }
 
