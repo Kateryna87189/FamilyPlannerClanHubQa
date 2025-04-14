@@ -85,16 +85,16 @@ jobs:
           name: gradle-results.zip
           path: build/reports/tests/test/*
 
-      - name: ✅ 📦 Archive [Test attachments]
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-attachments.zip
-          path: target/*
+#      - name: ✅ 📦 Archive [Test attachments]
+#        uses: actions/upload-artifact@v4
+#        if: always()
+#        with:
+#          name: test-attachments.zip
+#          path: target/*
 
-      - name: ✅ 📦 Archive [Cucumber Report]
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cucumber-report.zip
-          path: target/cucumber-reports.html
+#      - name: ✅ 📦 Archive [Cucumber Report]
+#        uses: actions/upload-artifact@v4
+#        if: always()
+#        with:
+#          name: cucumber-report.zip
+#          path: target/cucumber-reports.html
