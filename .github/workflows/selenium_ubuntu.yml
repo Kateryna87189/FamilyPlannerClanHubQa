@@ -83,7 +83,7 @@ jobs:
         if: always()
         with:
           name: gradle-results.zip
-          path: build/reports/tests/*
+          path: build/resources/test/*
 
 #      - name: ✅ 📦 Archive [Test attachments]
 #        uses: actions/upload-artifact@v4
