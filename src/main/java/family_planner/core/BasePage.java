@@ -62,10 +62,15 @@ public class BasePage {
     }
 
     public String takeScreenshot() {
+        // Define the directory and file for the screenshot
+        File screenshotDir = new File("src/test_screenshots");
+        if (!screenshotDir.exists()) {
+            // Create the directory if it doesn't exist
+            screenshotDir.mkdirs();
+        }
 
-        // Capture screenshot
         File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File screenshot = new File("src/test_screenshots/screen-" + System.currentTimeMillis() + ".png");
+        File screenshot = new File(screenshotDir, "screen-" + System.currentTimeMillis() + ".png");
         try {
             Files.copy(tmp, screenshot);
         } catch (IOException e) {
@@ -74,7 +79,6 @@ public class BasePage {
         System.out.println("Screenshot saved to: [" + screenshot.getAbsolutePath() + "]");
         return screenshot.getAbsolutePath();
     }
-
     protected void shouldHaveText(WebElement element, String text, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
         try {

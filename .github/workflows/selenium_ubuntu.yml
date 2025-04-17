@@ -65,9 +65,7 @@ jobs:
         run: ls -R
 
       - name: ▶️ 🐞 Run tests
-        run: |
-          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
-            ./gradlew clean ${{ github.event.inputs.deployment_target }} build > build.log 2>&1 || true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" gradle clean ${{ github.event.inputs.deployment_target != 'all_tests' && github.event.inputs.deployment_target || '' }} build > build.log 2>&1 || true
         if: github.event_name == 'workflow_dispatch'
 #        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./gradlew clean smoky build > build.log 2>&1 || true
       - name: ▶️ 🐞 Run default tests on push/PR
@@ -93,6 +91,13 @@ jobs:
         with:
           name: gradle-results.zip
           path: build/reports/tests/*
+
+      - name: ✅ 📦 Archive [Test screenshots]
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-screenshots
+          path: src/test_screenshots/
 
 #      - name: ✅ 📦 Archive [Test attachments]
 #        uses: actions/upload-artifact@v4
